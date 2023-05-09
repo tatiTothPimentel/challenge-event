@@ -1,19 +1,20 @@
 import UIKit
 
-protocol DetailsViewDelegate: AnyObject {
-    func sharingAction()
-    func checkInAction()
+protocol EventListViewDelegate: AnyObject {
+    func moreDetailsAction()
 }
 
-class DetailsView: UIView {
+class EventListView: UIView {
     
-    weak var delegate: DetailsViewDelegate?
-
+    weak var delegate: EventListViewDelegate?
+    private var eventListViewModel: EventListViewModel?
+    
     lazy var tableView: UITableView = {
         let tableView = UITableView()
-        tableView.separatorStyle = .none
-        tableView.register(EventDetailsTableViewCell.self, forCellReuseIdentifier: EventDetailsTableViewCell.identifier)
+        tableView.isScrollEnabled = true
         tableView.dataSource = self
+        tableView.separatorStyle = .singleLine
+        tableView.register(EventListTableViewCell.self, forCellReuseIdentifier: EventListTableViewCell.identifier)
         
         return tableView
     }()
@@ -40,31 +41,41 @@ class DetailsView: UIView {
             tableView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor),
         ])
+        
     }
 }
 
-extension DetailsView: UITableViewDataSource, UITableViewDelegate {
+extension EventListView {
+    func configure(viewModel: EventListViewModel?) {
+        eventListViewModel = viewModel
+        tableView.reloadData()
+    }
+}
+
+extension EventListView: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return eventListViewModel?.numberOfSections ?? 0
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return eventListViewModel?.numberOfRowsInSection(section) ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventDetailsTableViewCell.identifier, for: indexPath) as? EventDetailsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventListTableViewCell.identifier, for: indexPath) as? EventListTableViewCell else {
             return UITableViewCell()
         }
         
+        let eventViewModel = eventListViewModel?.eventAtIndex(indexPath.row)
+        cell.configure(viewModel: eventViewModel)
         cell.selectionStyle = .none
         cell.delegate = self
         return cell
     }
 }
 
-extension DetailsView: EventDetailsTableViewDelegate {
-    func checkInAction() {
-        delegate?.checkInAction()
-    }
-    
-    func sharingAction() {
-        delegate?.sharingAction()
+extension EventListView: EventListTableViewCellDelegate {
+    func moreDetailsAction() {
+        delegate?.moreDetailsAction()
     }
 }

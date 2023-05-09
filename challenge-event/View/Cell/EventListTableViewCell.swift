@@ -1,12 +1,12 @@
 import UIKit
 
-protocol EventListTableViewDelegate: AnyObject {
+protocol EventListTableViewCellDelegate: AnyObject {
     func moreDetailsAction()
 }
 
 class EventListTableViewCell: UITableViewCell {
     
-    weak var delegate: EventListTableViewDelegate?
+    weak var delegate: EventListTableViewCellDelegate?
     static let identifier = "EventListTableViewCell"
     
     lazy var eventImage: UIImageView = {
@@ -75,6 +75,13 @@ class EventListTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints()
+    }
+    
+    func configure(viewModel: EventViewModel?) {
+        guard let viewModel = viewModel else { return }
+        titleLabel.text = viewModel.title
+//        dateLabel.text = viewModel.date
+//        eventImage.image =
     }
     
     private func setConstraints() {

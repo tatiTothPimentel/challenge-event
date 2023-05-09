@@ -3,7 +3,7 @@ import UIKit
 class EventDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        let detailsView = DetailsView()
+        let detailsView = EventDetailsView()
         detailsView.delegate = self
         view = detailsView
     }
