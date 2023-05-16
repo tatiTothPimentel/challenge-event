@@ -1,7 +1,7 @@
 import Foundation
 
 struct Event: Codable {
-    let date: Double?
+    let date: Int?
     let description: String?
     let image: String?
     let longitude: Double?

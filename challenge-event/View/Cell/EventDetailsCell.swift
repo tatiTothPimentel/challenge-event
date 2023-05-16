@@ -1,19 +1,18 @@
 import UIKit
 
-protocol EventDetailsTableViewDelegate: AnyObject {
+protocol EventDetailsCellDelegate: AnyObject {
     func sharingAction()
     func checkInAction()
 }
 
-class EventDetailsTableViewCell: UITableViewCell {
+class EventDetailsCell: UITableViewCell {
 
-    weak var delegate: EventDetailsTableViewDelegate?
+    weak var delegate: EventDetailsCellDelegate?
     static let identifier = "EventDetailsTableViewCell"
     
     lazy var eventImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleToFill
-        image.image = UIImage(named: "events")
         image.layer.cornerRadius = 8
         image.layer.masksToBounds = true
         image.layer.borderColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
@@ -44,7 +43,6 @@ class EventDetailsTableViewCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hackathon Social Woop Sicredi"
         label.font = UIFont.boldSystemFont(ofSize: 24)
         label.textAlignment = .center
         label.numberOfLines = 0
@@ -55,8 +53,7 @@ class EventDetailsTableViewCell: UITableViewCell {
     
     lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "11/01/22"
-        label.font = .systemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 16)
         label.textAlignment = .center
         label.textColor = .black
         label.numberOfLines = 0
@@ -66,7 +63,6 @@ class EventDetailsTableViewCell: UITableViewCell {
     
     lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Vamos ajudar !!\n Se você tem na sua casa roupas que estão em bom estado de uso e não sabemos que fazer, coloque aqui na nossa página sua cidade e sua doação, com certeza poderá ajudar outras pessoas que estão passando por problemas econômicos no momento!!\n Ajudar não faz mal a ninguém!!!\n"
         label.font = .systemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -83,7 +79,6 @@ class EventDetailsTableViewCell: UITableViewCell {
         button.titleLabel?.textAlignment = .center
         button.backgroundColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
         button.layer.cornerRadius = 5
-//        button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(sharingAction), for: .touchUpInside)
         return button
     }()
@@ -116,7 +111,14 @@ class EventDetailsTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setConstraints()
-        contentView.isUserInteractionEnabled = true
+    }
+    
+    func configure(viewModel: EventViewModel?) {
+        guard let viewModel = viewModel else { return}
+        titleLabel.text = viewModel.title
+        dateLabel.text = viewModel.date
+        descriptionLabel.text = viewModel.description
+        eventImage.downloaded(from: viewModel.image, contentMode: .scaleAspectFill)
     }
     
     private func setConstraints() {

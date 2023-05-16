@@ -1,18 +1,17 @@
 import UIKit
 
-protocol EventListTableViewCellDelegate: AnyObject {
-    func moreDetailsAction()
+protocol EventListCellDelegate: AnyObject {
+    func moreDetailsAction(viewModel: EventViewModel)
 }
 
-class EventListTableViewCell: UITableViewCell {
+class EventListCell: UITableViewCell {
     
-    weak var delegate: EventListTableViewCellDelegate?
-    static let identifier = "EventListTableViewCell"
+    weak var delegate: EventListCellDelegate?
+    static let identifier = "EventListCell"
+    var viewModel: EventViewModel?
     
     lazy var eventImage: UIImageView = {
         let image = UIImageView()
-        image.contentMode = .scaleAspectFit
-        image.image = UIImage(named: "events")
         image.layer.cornerRadius = self.frame.height / 2.0
         image.layer.masksToBounds = true
         image.layer.borderColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
@@ -23,7 +22,6 @@ class EventListTableViewCell: UITableViewCell {
     
     lazy var titleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Hackathon Social Woop Sicredi"
         label.font = UIFont.boldSystemFont(ofSize: 16)
         label.textAlignment = .left
         label.numberOfLines = 0
@@ -34,7 +32,6 @@ class EventListTableViewCell: UITableViewCell {
     
     lazy var dateLabel: UILabel = {
         let label = UILabel()
-        label.text = "11/01/22"
         label.font = .systemFont(ofSize: 14)
         label.textAlignment = .left
         label.textColor = .black
@@ -65,7 +62,8 @@ class EventListTableViewCell: UITableViewCell {
     }()
     
     @objc func moreDetailsAction() {
-        delegate?.moreDetailsAction()
+        guard let viewModel = viewModel  else { return }
+        delegate?.moreDetailsAction(viewModel: viewModel)
     }
     
     required init?(coder: NSCoder) {
@@ -78,10 +76,11 @@ class EventListTableViewCell: UITableViewCell {
     }
     
     func configure(viewModel: EventViewModel?) {
+        self.viewModel = viewModel
         guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title
-//        dateLabel.text = viewModel.date
-//        eventImage.image =
+        dateLabel.text = viewModel.date
+        eventImage.downloaded(from: viewModel.image, contentMode: .scaleAspectFill)
     }
     
     private func setConstraints() {

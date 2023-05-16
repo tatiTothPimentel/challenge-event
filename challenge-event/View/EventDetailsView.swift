@@ -8,11 +8,12 @@ protocol DetailsViewDelegate: AnyObject {
 class EventDetailsView: UIView {
     
     weak var delegate: DetailsViewDelegate?
+    private var eventViewModel: EventViewModel?
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
-        tableView.register(EventDetailsTableViewCell.self, forCellReuseIdentifier: EventDetailsTableViewCell.identifier)
+        tableView.register(EventDetailsCell.self, forCellReuseIdentifier: EventDetailsCell.identifier)
         tableView.dataSource = self
         
         return tableView
@@ -43,23 +44,31 @@ class EventDetailsView: UIView {
     }
 }
 
+extension EventDetailsView {
+    func configure(viewModel: EventViewModel) {
+        eventViewModel = viewModel
+        tableView.reloadData()
+    }
+}
+
 extension EventDetailsView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventDetailsTableViewCell.identifier, for: indexPath) as? EventDetailsTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventDetailsCell.identifier, for: indexPath) as? EventDetailsCell else {
             return UITableViewCell()
         }
         
         cell.selectionStyle = .none
         cell.delegate = self
+        cell.configure(viewModel: eventViewModel)
         return cell
     }
 }
 
-extension EventDetailsView: EventDetailsTableViewDelegate {
+extension EventDetailsView: EventDetailsCellDelegate {
     func checkInAction() {
         delegate?.checkInAction()
     }

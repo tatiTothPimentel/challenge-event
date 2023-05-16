@@ -2,13 +2,15 @@ import UIKit
 
 class EventListViewController: UIViewController {
     var eventListView = EventListView()
+
+    override func loadView() {
+        eventListView.delegate = self
+        view = eventListView
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        eventListView.delegate = self
         fetchData()
-
-        view = eventListView
     }
 
     private func fetchData() {
@@ -28,9 +30,9 @@ class EventListViewController: UIViewController {
 }
 
 extension EventListViewController: EventListViewDelegate {
-    func moreDetailsAction() {
-        let detailsViewController = EventDetailsViewController()
-        detailsViewController.modalPresentationStyle = .fullScreen
-        present(detailsViewController, animated: true, completion: nil)
+    func moreDetailsAction(viewModel: EventViewModel) {
+        let detailsViewController = EventDetailsViewController(eventViewModel: viewModel)
+//        detailsViewController.modalPresentationStyle = .fullScreen
+        present(detailsViewController, animated: true)
     }
 }

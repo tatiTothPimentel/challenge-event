@@ -1,9 +1,5 @@
 import UIKit
 
-enum ServiceError: Error {
-    case invalidURL
-}
-
 class WebService {
     static func getEvents(completion: @escaping ([Event]?) -> Void) {
         

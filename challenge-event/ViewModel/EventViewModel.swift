@@ -32,8 +32,14 @@ extension EventViewModel {
 
 extension EventViewModel {
     
-    var date: Double {
-        return self.event.date ?? 0.0
+    var date: String {
+        let timeStamp = event.date
+        let timeInterval = TimeInterval(timeStamp ?? 0)
+        let date = Date(timeIntervalSince1970: timeInterval)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd/MM"
+        let dateString = dateFormatter.string(from: date)
+        return dateString
     }
     
     var description: String {

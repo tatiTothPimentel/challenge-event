@@ -1,7 +1,7 @@
 import UIKit
 
 protocol EventListViewDelegate: AnyObject {
-    func moreDetailsAction()
+    func moreDetailsAction(viewModel: EventViewModel)
 }
 
 class EventListView: UIView {
@@ -14,7 +14,7 @@ class EventListView: UIView {
         tableView.isScrollEnabled = true
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
-        tableView.register(EventListTableViewCell.self, forCellReuseIdentifier: EventListTableViewCell.identifier)
+        tableView.register(EventListCell.self, forCellReuseIdentifier: EventListCell.identifier)
         
         return tableView
     }()
@@ -62,7 +62,7 @@ extension EventListView: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventListTableViewCell.identifier, for: indexPath) as? EventListTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: EventListCell.identifier, for: indexPath) as? EventListCell else {
             return UITableViewCell()
         }
         
@@ -74,8 +74,8 @@ extension EventListView: UITableViewDataSource {
     }
 }
 
-extension EventListView: EventListTableViewCellDelegate {
-    func moreDetailsAction() {
-        delegate?.moreDetailsAction()
+extension EventListView: EventListCellDelegate {
+    func moreDetailsAction(viewModel: EventViewModel) {
+        delegate?.moreDetailsAction(viewModel: viewModel)
     }
 }
