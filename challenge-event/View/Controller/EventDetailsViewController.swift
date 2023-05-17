@@ -1,7 +1,6 @@
 import UIKit
 
 class EventDetailsViewController: UIViewController {
-    var detailsView = EventDetailsView()
     var eventViewModel: EventViewModel
     
     init(eventViewModel: EventViewModel) {
@@ -13,12 +12,17 @@ class EventDetailsViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
+        let detailsView = EventDetailsView()
         detailsView.delegate = self
         detailsView.configure(viewModel: eventViewModel)
         
         view = detailsView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        navigationController?.navigationBar.tintColor = UIColor.black
     }
 }
 

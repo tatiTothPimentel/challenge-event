@@ -10,6 +10,7 @@ class EventListViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationItem.title = "EVENTOS"
         fetchData()
     }
 
@@ -32,7 +33,6 @@ class EventListViewController: UIViewController {
 extension EventListViewController: EventListViewDelegate {
     func moreDetailsAction(viewModel: EventViewModel) {
         let detailsViewController = EventDetailsViewController(eventViewModel: viewModel)
-//        detailsViewController.modalPresentationStyle = .fullScreen
-        present(detailsViewController, animated: true)
+        navigationController?.pushViewController(detailsViewController, animated: true)
     }
 }

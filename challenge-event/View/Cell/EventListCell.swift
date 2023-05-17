@@ -15,6 +15,7 @@ class EventListCell: UITableViewCell {
         image.layer.cornerRadius = self.frame.height / 2.0
         image.layer.masksToBounds = true
         image.layer.borderColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
+        image.image = UIImage(named: "imageDefault")
         image.layer.borderWidth = 3
 
         return image

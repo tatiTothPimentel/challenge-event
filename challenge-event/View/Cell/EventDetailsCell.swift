@@ -17,6 +17,7 @@ class EventDetailsCell: UITableViewCell {
         image.layer.masksToBounds = true
         image.layer.borderColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
         image.layer.borderWidth = 3
+        image.image = UIImage(named: "imageDefault")
 
         return image
     }()
