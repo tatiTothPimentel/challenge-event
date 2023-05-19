@@ -14,9 +14,7 @@ class EventListCell: UITableViewCell {
         let image = UIImageView()
         image.layer.cornerRadius = self.frame.height / 2.0
         image.layer.masksToBounds = true
-        image.layer.borderColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
         image.image = UIImage(named: "imageDefault")
-        image.layer.borderWidth = 3
 
         return image
     }()
@@ -41,10 +39,10 @@ class EventListCell: UITableViewCell {
     }()
     
     lazy var stackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [titleLabel, dateLabel])
+        let stackView = UIStackView(arrangedSubviews: [titleLabel, dateLabel, seeMoreButton])
         stackView.axis = .vertical
         stackView.alignment = .fill
-        stackView.distribution = .fill
+        stackView.distribution = .fillEqually
         stackView.spacing = 2
 
         return stackView
@@ -54,10 +52,8 @@ class EventListCell: UITableViewCell {
         let button = UIButton()
         button.setTitle("Ver mais", for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 14)
-        button.titleLabel?.textColor = .white
-        button.backgroundColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
-        button.layer.cornerRadius = 5
-        button.layer.masksToBounds = true
+        button.setTitleColor(UIColor.init(red: 0, green: 0.412, blue: 0.816, alpha: 1), for: .normal)
+        button.contentHorizontalAlignment = .right
         button.addTarget(self, action: #selector (moreDetailsAction), for: .touchUpInside)
         return button
     }()
@@ -77,6 +73,7 @@ class EventListCell: UITableViewCell {
     }
     
     func configure(viewModel: EventViewModel?) {
+        contentView.backgroundColor = .white
         self.viewModel = viewModel
         guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title
@@ -87,11 +84,9 @@ class EventListCell: UITableViewCell {
     private func setConstraints() {
         contentView.addSubview(eventImage)
         contentView.addSubview(stackView)
-        contentView.addSubview(seeMoreButton)
         
         eventImage.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        seeMoreButton.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             eventImage.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
@@ -102,13 +97,8 @@ class EventListCell: UITableViewCell {
             
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 24),
             stackView.leadingAnchor.constraint(equalTo: eventImage.trailingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -24),
-            
-            seeMoreButton.topAnchor.constraint(equalTo: stackView.bottomAnchor, constant: 24),
-            seeMoreButton.leadingAnchor.constraint(equalTo: eventImage.trailingAnchor, constant: 16),
-            seeMoreButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
-            seeMoreButton.heightAnchor.constraint(equalToConstant: 50),
-            seeMoreButton.widthAnchor.constraint(equalToConstant: 100),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -24),
         ])
     }
 }

@@ -11,6 +11,9 @@ class EventListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationItem.title = "EVENTOS"
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.gray]
+        navigationController?.navigationBar.barTintColor = UIColor.white
+
         fetchData()
     }
 

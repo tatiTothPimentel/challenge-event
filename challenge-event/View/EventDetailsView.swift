@@ -13,6 +13,7 @@ class EventDetailsView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
         tableView.register(EventDetailsCell.self, forCellReuseIdentifier: EventDetailsCell.identifier)
         tableView.dataSource = self
         

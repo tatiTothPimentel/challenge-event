@@ -28,10 +28,12 @@ class EventDetailsViewController: UIViewController {
 
 extension EventDetailsViewController: DetailsViewDelegate {
     func checkInAction() {
-        print("Você está prestes a fazer o check in")
+        
     }
     
     func sharingAction() {
-        print("Você irá compartilhar o evento")
+        let items:[Any] = [eventViewModel.image, eventViewModel.title, eventViewModel.description]
+        let ac = UIActivityViewController(activityItems: items, applicationActivities: nil)
+        self.present(ac, animated: true)
     }
 }

@@ -15,8 +15,6 @@ class EventDetailsCell: UITableViewCell {
         image.contentMode = .scaleToFill
         image.layer.cornerRadius = 8
         image.layer.masksToBounds = true
-        image.layer.borderColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
-        image.layer.borderWidth = 3
         image.image = UIImage(named: "imageDefault")
 
         return image
@@ -78,7 +76,7 @@ class EventDetailsCell: UITableViewCell {
         button.titleLabel?.font = .boldSystemFont(ofSize: 16)
         button.titleLabel?.textColor = .white
         button.titleLabel?.textAlignment = .center
-        button.backgroundColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
+        button.backgroundColor = .init(red: 0, green: 0.412, blue: 0.816, alpha: 1)
         button.layer.cornerRadius = 5
         button.addTarget(self, action: #selector(sharingAction), for: .touchUpInside)
         return button
@@ -90,7 +88,7 @@ class EventDetailsCell: UITableViewCell {
         button.titleLabel?.font = .boldSystemFont(ofSize: 16)
         button.titleLabel?.textColor = .white
         button.titleLabel?.textAlignment = .center
-        button.backgroundColor = .init(red: 0.6, green: 0.4, blue: 100.0, alpha: 1)
+        button.backgroundColor = .init(red: 0, green: 0.412, blue: 0.816, alpha: 1)
         button.layer.cornerRadius = 5
         button.layer.masksToBounds = true
         button.addTarget(self, action: #selector(checkInAction), for: .touchUpInside)
@@ -115,6 +113,7 @@ class EventDetailsCell: UITableViewCell {
     }
     
     func configure(viewModel: EventViewModel?) {
+        contentView.backgroundColor = .white
         guard let viewModel = viewModel else { return}
         titleLabel.text = viewModel.title
         dateLabel.text = viewModel.date

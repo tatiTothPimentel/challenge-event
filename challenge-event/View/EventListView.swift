@@ -12,6 +12,7 @@ class EventListView: UIView {
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.isScrollEnabled = true
+        tableView.backgroundColor = .white
         tableView.dataSource = self
         tableView.separatorStyle = .singleLine
         tableView.register(EventListCell.self, forCellReuseIdentifier: EventListCell.identifier)
