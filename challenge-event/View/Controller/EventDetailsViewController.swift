@@ -28,7 +28,7 @@ class EventDetailsViewController: UIViewController {
 
 extension EventDetailsViewController: DetailsViewDelegate {
     func checkInAction() {
-        
+        makePOSTRequest(viewModel: eventViewModel)
     }
     
     func sharingAction() {

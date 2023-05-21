@@ -21,6 +21,7 @@
 		3C9768902A0AA2F100A574F5 /* EventViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C97688F2A0AA2F100A574F5 /* EventViewModel.swift */; };
 		3C9768922A0ACA2900A574F5 /* EventListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9768912A0ACA2900A574F5 /* EventListView.swift */; };
 		3C9768962A0C31BB00A574F5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9768952A0C31BB00A574F5 /* Extensions.swift */; };
+		3C9768982A17EE1400A574F5 /* APIRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C9768972A17EE1400A574F5 /* APIRequest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		3C97688F2A0AA2F100A574F5 /* EventViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventViewModel.swift; sourceTree = "<group>"; };
 		3C9768912A0ACA2900A574F5 /* EventListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventListView.swift; sourceTree = "<group>"; };
 		3C9768952A0C31BB00A574F5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3C9768972A17EE1400A574F5 /* APIRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				3C97688C2A098CD300A574F5 /* WebService.swift */,
+				3C9768972A17EE1400A574F5 /* APIRequest.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -227,6 +230,7 @@
 			files = (
 				3C9768922A0ACA2900A574F5 /* EventListView.swift in Sources */,
 				3C97687B2A0568F700A574F5 /* EventListCell.swift in Sources */,
+				3C9768982A17EE1400A574F5 /* APIRequest.swift in Sources */,
 				3C97688D2A098CD300A574F5 /* WebService.swift in Sources */,
 				3C97686A2A04520B00A574F5 /* EventListViewController.swift in Sources */,
 				3C9768662A04520B00A574F5 /* AppDelegate.swift in Sources */,
@@ -373,6 +377,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H68BTJ8X2R;
@@ -400,6 +405,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = H68BTJ8X2R;
