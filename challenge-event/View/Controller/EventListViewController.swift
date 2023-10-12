@@ -1,15 +1,19 @@
 import UIKit
 
 class EventListViewController: UIViewController {
-    var eventListView = EventListView()
-
-    override func loadView() {
-        eventListView.delegate = self
-        view = eventListView
+    
+    private var eventListViewModel: EventListViewModel? {
+        didSet {
+            self.tableView.reloadData()
+        }
     }
+
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        self.tableView.register(UINib(nibName: "EventTableViewCell", bundle: nil), forCellReuseIdentifier: "EventTableViewCell")
         navigationItem.title = "EVENTOS"
         navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.gray]
         navigationController?.navigationBar.barTintColor = UIColor.white
@@ -22,10 +26,9 @@ class EventListViewController: UIViewController {
         WebService.getEvents() { eventList in
             
             if let event = eventList {
-                let eventListViewModel = EventListViewModel(events: event)
                 
                 DispatchQueue.main.async {
-                    self.eventListView.configure(viewModel: eventListViewModel)
+                    self.eventListViewModel = EventListViewModel(events: event)
                 }
             }
         }
@@ -33,7 +36,29 @@ class EventListViewController: UIViewController {
     }
 }
 
-extension EventListViewController: EventListViewDelegate {
+extension EventListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return eventListViewModel?.numberOfSections ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return eventListViewModel?.numberOfRowsInSection(section) ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "EventTableViewCell", for: indexPath) as? EventTableViewCell else {
+            return UITableViewCell()
+        }
+        
+        let eventViewModel = eventListViewModel?.eventAtIndex(indexPath.row)
+        cell.configure(viewModel: eventViewModel)
+        cell.selectionStyle = .none
+        cell.delegate = self
+        return cell
+    }
+}
+
+extension EventListViewController: EventListCellDelegate {
     func moreDetailsAction(viewModel: EventViewModel) {
         let detailsViewController = EventDetailsViewController(eventViewModel: viewModel)
         navigationController?.pushViewController(detailsViewController, animated: true)

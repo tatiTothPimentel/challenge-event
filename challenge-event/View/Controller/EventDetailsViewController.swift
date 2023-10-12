@@ -28,7 +28,21 @@ class EventDetailsViewController: UIViewController {
 
 extension EventDetailsViewController: DetailsViewDelegate {
     func checkInAction() {
-        makePOSTRequest(viewModel: eventViewModel)
+        makePOSTRequest(viewModel: eventViewModel) { result in
+            DispatchQueue.main.async {
+                if result?.code == "200" {
+                    let subscriptionViewController = SubscriptionViewController()
+                    self.navigationController?.pushViewController(subscriptionViewController, animated: true)
+                } else {
+                    let alertController = UIAlertController(title: "Erro", message: "Não foi possível realizar a sua inscrição no evento", preferredStyle: .actionSheet)
+                    
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alertController.addAction(okAction)
+                    
+                    self.present(alertController, animated: true, completion: nil)
+                }
+            }
+        }
     }
     
     func sharingAction() {

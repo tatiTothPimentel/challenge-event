@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EventTableViewCell" rowHeight="154" id="KGk-i7-Jjw" customClass="EventTableViewCell" customModule="challenge_event" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="411" height="154"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="411" height="154"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xC8-QX-SJ4">
+                        <rect key="frame" x="16" y="16" width="120" height="120"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="mS0-Nf-Mb1"/>
+                            <constraint firstAttribute="height" constant="120" id="pk0-Wc-vrf"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hm8-kV-6d3">
+                        <rect key="frame" x="148" y="15.999999999999998" width="247" height="19.333333333333329"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="efS-xP-30h">
+                        <rect key="frame" x="148" y="43.333333333333336" width="247" height="17"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                        <color key="textColor" red="0.51098328829999995" green="0.51098328829999995" blue="0.51098328829999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8I9-eU-BTJ">
+                        <rect key="frame" x="295" y="108" width="100" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="SSs-6t-fWO"/>
+                            <constraint firstAttribute="width" constant="100" id="gP9-Jl-dEi"/>
+                        </constraints>
+                        <color key="tintColor" name="AccentColor"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Saiba mais">
+                            <fontDescription key="titleFontDescription" name="Arial-BoldMT" family="Arial" pointSize="14"/>
+                        </buttonConfiguration>
+                        <connections>
+                            <action selector="showMoreDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="bxJ-ed-qva"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8I9-eU-BTJ" firstAttribute="top" secondItem="efS-xP-30h" secondAttribute="bottom" priority="250" constant="8" id="CJd-Jk-4pg"/>
+                    <constraint firstItem="8I9-eU-BTJ" firstAttribute="bottom" secondItem="xC8-QX-SJ4" secondAttribute="bottom" id="IC9-6H-MhJ"/>
+                    <constraint firstItem="xC8-QX-SJ4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="L6y-SC-138"/>
+                    <constraint firstItem="hm8-kV-6d3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="16" id="QLe-2T-nJ3"/>
+                    <constraint firstItem="efS-xP-30h" firstAttribute="leading" secondItem="xC8-QX-SJ4" secondAttribute="trailing" constant="12" id="VWF-PE-mWh"/>
+                    <constraint firstItem="xC8-QX-SJ4" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="VnV-41-vNe"/>
+                    <constraint firstAttribute="bottom" secondItem="xC8-QX-SJ4" secondAttribute="bottom" constant="16" id="gyU-Ro-LGR"/>
+                    <constraint firstItem="hm8-kV-6d3" firstAttribute="leading" secondItem="xC8-QX-SJ4" secondAttribute="trailing" constant="12" id="knv-Ka-Qmf"/>
+                    <constraint firstAttribute="trailing" secondItem="efS-xP-30h" secondAttribute="trailing" constant="16" id="nnm-VA-9uX"/>
+                    <constraint firstItem="efS-xP-30h" firstAttribute="top" secondItem="hm8-kV-6d3" secondAttribute="bottom" constant="8" id="qe2-AS-imM"/>
+                    <constraint firstAttribute="trailing" secondItem="8I9-eU-BTJ" secondAttribute="trailing" constant="16" id="s9d-kn-tBQ"/>
+                    <constraint firstAttribute="trailing" secondItem="hm8-kV-6d3" secondAttribute="trailing" constant="16" id="zVd-k1-aaM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateLabel" destination="efS-xP-30h" id="bz4-cB-OWP"/>
+                <outlet property="eventImage" destination="xC8-QX-SJ4" id="SWh-Nx-aVo"/>
+                <outlet property="titleLabel" destination="hm8-kV-6d3" id="DIn-0O-DLu"/>
+            </connections>
+            <point key="canvasLocation" x="184" y="27"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

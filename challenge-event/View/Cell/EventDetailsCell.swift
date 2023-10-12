@@ -72,7 +72,7 @@ class EventDetailsCell: UITableViewCell {
     
     lazy var sharingButton: UIButton = {
         let button = UIButton()
-        button.setTitle("Compartilhamento", for: .normal)
+        button.setTitle("Compartilhar", for: .normal)
         button.titleLabel?.font = .boldSystemFont(ofSize: 16)
         button.titleLabel?.textColor = .white
         button.titleLabel?.textAlignment = .center
