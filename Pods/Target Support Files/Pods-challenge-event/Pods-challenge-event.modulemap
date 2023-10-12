@@ -1,0 +1,6 @@
+framework module Pods_challenge_event {
+  umbrella header "Pods-challenge-event-umbrella.h"
+
+  export *
+  module * { export * }
+}
